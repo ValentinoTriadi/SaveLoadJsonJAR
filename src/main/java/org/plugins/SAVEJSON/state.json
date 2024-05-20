@@ -1,0 +1,59 @@
+{
+  "player2" : {
+    "hand" : [ {
+      "name" : "BERUANG",
+      "lokasi" : "A01"
+    }, {
+      "name" : "BERUANG",
+      "lokasi" : "B01"
+    } ],
+    "handCount" : 2,
+    "deckCount" : 38,
+    "gulden" : 300,
+    "ladangCount" : 1,
+    "ladang" : [ {
+      "effectCount" : 0,
+      "effect" : [ ],
+      "ageOrWeight" : 0,
+      "name" : "AYAM",
+      "lokasi" : "B02"
+    } ]
+  },
+  "gameState" : {
+    "countItem" : 5,
+    "items" : [ {
+      "name" : "DAGING_DOMBA",
+      "count" : 3
+    }, {
+      "name" : "SIRIP_HIU",
+      "count" : 5
+    }, {
+      "name" : "DAGING_KUDA",
+      "count" : 10
+    }, {
+      "name" : "DAGING_BERUANG",
+      "count" : 1
+    }, {
+      "name" : "SUSU",
+      "count" : 2
+    } ],
+    "currentPlayer" : 1
+  },
+  "player1" : {
+    "hand" : [ {
+      "name" : "BERUANG",
+      "lokasi" : "A01"
+    } ],
+    "handCount" : 1,
+    "deckCount" : 39,
+    "gulden" : 500,
+    "ladangCount" : 1,
+    "ladang" : [ {
+      "effectCount" : 3,
+      "effect" : [ "ACCELERATE", "DELAY", "PROTECT" ],
+      "ageOrWeight" : 5,
+      "name" : "DOMBA",
+      "lokasi" : "A01"
+    } ]
+  }
+}
