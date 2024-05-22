@@ -24,8 +24,6 @@
             <groupId>oop</groupId>
             <artifactId>IF2210_TB2_SC4</artifactId>
             <version>1.0-SNAPSHOT</version>
-            <scope>system</scope>
-            <systemPath>D:\VSCODE\OOP\Tubes2_OOP\target\IF2210_TB2_SC4-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
 
 

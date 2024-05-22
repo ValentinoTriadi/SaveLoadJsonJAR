@@ -1,59 +1,59 @@
 {
-  "player2" : {
-    "hand" : [ {
-      "name" : "BERUANG",
-      "lokasi" : "A01"
-    }, {
-      "name" : "BERUANG",
-      "lokasi" : "B01"
-    } ],
-    "handCount" : 2,
-    "deckCount" : 38,
-    "gulden" : 300,
-    "ladangCount" : 1,
-    "ladang" : [ {
-      "effectCount" : 0,
-      "effect" : [ ],
-      "ageOrWeight" : 0,
-      "name" : "AYAM",
-      "lokasi" : "B02"
-    } ]
-  },
   "gameState" : {
-    "countItem" : 5,
     "items" : [ {
-      "name" : "DAGING_DOMBA",
-      "count" : 3
+      "count" : 2,
+      "name" : "SUSU"
     }, {
-      "name" : "SIRIP_HIU",
-      "count" : 5
+      "count" : 5,
+      "name" : "SIRIP_HIU"
     }, {
-      "name" : "DAGING_KUDA",
-      "count" : 10
+      "count" : 10,
+      "name" : "DAGING_KUDA"
     }, {
-      "name" : "DAGING_BERUANG",
-      "count" : 1
+      "count" : 3,
+      "name" : "DAGING_DOMBA"
     }, {
-      "name" : "SUSU",
-      "count" : 2
+      "count" : 1,
+      "name" : "DAGING_BERUANG"
     } ],
+    "countItem" : 5,
     "currentPlayer" : 1
   },
-  "player1" : {
+  "player2" : {
+    "handCount" : 2,
     "hand" : [ {
-      "name" : "BERUANG",
+      "lokasi" : "A01",
+      "name" : "BERUANG"
+    }, {
+      "lokasi" : "B01",
+      "name" : "BERUANG"
+    } ],
+    "ladang" : [ {
+      "name" : "AYAM",
+      "ageOrWeight" : 0,
+      "effect" : [ ],
+      "effectCount" : 0,
+      "lokasi" : "B02"
+    } ],
+    "ladangCount" : 1,
+    "gulden" : 300,
+    "deckCount" : 38
+  },
+  "player1" : {
+    "handCount" : 1,
+    "hand" : [ {
+      "lokasi" : "A01",
+      "name" : "BERUANG"
+    } ],
+    "ladang" : [ {
+      "name" : "DOMBA",
+      "ageOrWeight" : 5,
+      "effect" : [ "ACCELERATE", "DELAY", "PROTECT" ],
+      "effectCount" : 3,
       "lokasi" : "A01"
     } ],
-    "handCount" : 1,
-    "deckCount" : 39,
-    "gulden" : 500,
     "ladangCount" : 1,
-    "ladang" : [ {
-      "effectCount" : 3,
-      "effect" : [ "ACCELERATE", "DELAY", "PROTECT" ],
-      "ageOrWeight" : 5,
-      "name" : "DOMBA",
-      "lokasi" : "A01"
-    } ]
+    "gulden" : 500,
+    "deckCount" : 39
   }
 }
