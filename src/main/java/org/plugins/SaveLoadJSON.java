@@ -52,15 +52,18 @@ public class SaveLoadJSON implements Load, Save {
     public void loadGameState(){
         try {
             JsonNode gameStateNode = JsonState.get("gameState");
+
             GameState.getInstance().setCurrentPlayer(gameStateNode.get("currentPlayer").asInt());
+
             int countItem = gameStateNode.get("countItems").asInt();
-            System.out.println(gameStateNode.get("items").asText());
             Shop tempShop = new Shop();
+
             for (int i = 0; i < countItem; i++) {
                 String item = gameStateNode.get("items").get(i).get("name").asText();
                 int count = gameStateNode.get("items").get(i).get("count").asInt();
                 tempShop.addCard((ProductCard) GameData.getCard(item), count);
             }
+
             GameState.getInstance().setShop(tempShop);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
@@ -240,7 +243,7 @@ public class SaveLoadJSON implements Load, Save {
             );
 
             // Write to file
-            writer.writeValue(handleNewFile(Paths.get(folderName + "/state.json")), jsonDataObject);
+            writer.writeValue(handleNewFile(Paths.get("src/main/java/org/plugins/" + folderName + "/state.json")), jsonDataObject);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
         }
