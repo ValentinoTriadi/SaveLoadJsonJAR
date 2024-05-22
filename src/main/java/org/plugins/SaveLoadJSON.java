@@ -11,11 +11,11 @@ import oop.if2210_tb2_sc4.card.Card;
 import oop.if2210_tb2_sc4.card.EffectType;
 import oop.if2210_tb2_sc4.card.FarmResourceCard;
 import oop.if2210_tb2_sc4.card.ProductCard;
-import oop.if2210_tb2_sc4.save_load.Load;
-import oop.if2210_tb2_sc4.save_load.Save;
+import oop.if2210_tb2_sc4.save_load.SaveLoad;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import oop.if2210_tb2_sc4.save_load.SaveLoadAnnotation;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,9 +26,28 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class SaveLoadJSON implements Load, Save {
+@SaveLoadAnnotation(type = "JSON")
+public class SaveLoadJSON implements SaveLoad {
     private JsonNode JsonState;
     private String folderName;
+
+    public SaveLoadJSON(){
+        try {
+            FileReader reader;
+            try {
+                reader = new FileReader("src/main/java/org/plugins/state.json");
+            } catch (FileNotFoundException e){
+                handleNewFile(Paths.get("src/main/java/org/plugins/state.json"));
+                reader = new FileReader("src/main/java/org/plugins/state.json");
+            }
+            ObjectMapper mapper = new ObjectMapper();
+            JsonState = mapper.readTree(reader);
+            this.folderName = "src/main/java/org/plugins";
+            GameData.initCards();
+        } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 
     public SaveLoadJSON(String folderName){
         try {
