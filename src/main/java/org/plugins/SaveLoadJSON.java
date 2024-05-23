@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -34,15 +35,21 @@ public class SaveLoadJSON implements SaveLoad {
     public SaveLoadJSON(){
         try {
             FileReader reader;
+            this.folderName = "default";
+
+            URL url = SaveLoad.class.getResource("");
+            assert url != null;
+            String cwd = url.getPath().startsWith("/") ? url.getPath().substring(1) : url.getPath();
+
             try {
-                reader = new FileReader("src/main/java/org/plugins/state.json");
+                reader = new FileReader(cwd + folderName+ "/state.json");
             } catch (FileNotFoundException e){
-                handleNewFile(Paths.get("src/main/java/org/plugins/state.json"));
-                reader = new FileReader("src/main/java/org/plugins/state.json");
+                handleNewFile(Paths.get(cwd + folderName+ "state.json"));
+                reader = new FileReader(cwd + folderName+ "state.json");
             }
             ObjectMapper mapper = new ObjectMapper();
             JsonState = mapper.readTree(reader);
-            this.folderName = "src/main/java/org/plugins";
+
             GameData.initCards();
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
@@ -52,15 +59,20 @@ public class SaveLoadJSON implements SaveLoad {
     public SaveLoadJSON(String folderName){
         try {
             FileReader reader;
+            this.folderName = folderName;
+
+            URL url = SaveLoad.class.getResource("");
+            assert url != null;
+            String cwd = url.getPath().startsWith("/") ? url.getPath().substring(1) : url.getPath();
+
             try {
-                reader = new FileReader("src/main/java/org/plugins/" + folderName + "/state.json");
+                reader = new FileReader(cwd + folderName + "/state.json");
             } catch (FileNotFoundException e){
-                handleNewFile(Paths.get("src/main/java/org/plugins/" + folderName + "/state.json"));
-                reader = new FileReader("src/main/java/org/plugins/" + folderName + "/state.json");
+                handleNewFile(Paths.get(cwd + folderName + "/state.json"));
+                reader = new FileReader(cwd + folderName + "/state.json");
             }
             ObjectMapper mapper = new ObjectMapper();
             JsonState = mapper.readTree(reader);
-            this.folderName = "src/main/java/org/plugins/" + folderName;
             GameData.initCards();
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
@@ -74,7 +86,7 @@ public class SaveLoadJSON implements SaveLoad {
 
             GameState.getInstance().setCurrentPlayer(gameStateNode.get("currentPlayer").asInt());
 
-            int countItem = gameStateNode.get("countItems").asInt();
+            int countItem = gameStateNode.get("countItem").asInt();
             Shop tempShop = new Shop();
 
             for (int i = 0; i < countItem; i++) {
@@ -157,7 +169,7 @@ public class SaveLoadJSON implements SaveLoad {
     }
 
     @Override
-    public void save(){
+    public void save(String folderName){
         try {
             ObjectMapper mapper = new ObjectMapper();
             ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
@@ -262,9 +274,12 @@ public class SaveLoadJSON implements SaveLoad {
             );
 
             // Write to file
-            writer.writeValue(handleNewFile(Paths.get("src/main/java/org/plugins/" + folderName + "/state.json")), jsonDataObject);
+            URL url = SaveLoad.class.getResource("");
+            assert url != null;
+            String cwd = url.getPath().startsWith("/") ? url.getPath().substring(1) : url.getPath();
+            writer.writeValue(handleNewFile(Paths.get(cwd + folderName + "/state.json")), jsonDataObject);
         } catch (Exception e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Error: "  + e.getMessage());
         }
     }
 
