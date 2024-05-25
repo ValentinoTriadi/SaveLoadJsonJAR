@@ -199,6 +199,7 @@ public class SaveLoadJSON implements SaveLoad {
 
             // Make handList
             for (int i = 0; i < p1.getJumlahDeckActive(); i++) {
+                if (hand[i] == null) continue;
                 Card card = hand[i];
                 handList.add(Map.of(
                         "name", card.getName(),
